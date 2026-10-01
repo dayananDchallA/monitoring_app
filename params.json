@@ -1,0 +1,116 @@
+{
+    "apps": {
+      "Home": {},
+      "Acceptance Rate": {
+        "sf_tab_name": "./data/acceptance.xlsx",
+        "app_type": "Application Borrower Type",
+        "qtr_col": "Application Quarter",
+        "id_cols": [
+          "Application Borrower Type",
+          "Application Quarter",
+          "Approved",
+          "Settled",
+          "Declined"
+        ],
+        "melt_vars": [
+          "Orignation Rate",
+          "Approved Rate",
+          "Declined Rate"
+        ],
+        "hover_cols": [
+          "Application Quarter",
+          "Approved",
+          "Settled",
+          "Declined"
+        ],
+        "decile_tab_disp_cols": [
+          "Application Quarter",
+          "Decile",
+          "Orignation Rate",
+          "Approved Rate",
+          "Declined Rate",
+          "Approved",
+          "Settled",
+          "Declined"
+        ],
+        "scoreband_tab_disp_cols": [
+          "Application Quarter",
+          "Scoreband",
+          "Orignation Rate",
+          "Approved Rate",
+          "Declined Rate",
+          "Approved",
+          "Settled",
+          "Declined"
+        ],
+        "ar_rate_cols": [
+          "Application Quarter",
+          "Orignation Rate",
+          "Approved Rate",
+          "Declined Rate"
+        ],
+        "tab_sort_col": "Decile"
+      },
+      "Roll Rates Matrix": {
+        "app_type": "Application Borrower Type",
+        "sf_tab_name": "./data/matrix.xlsx",
+        "sample_col": "Data Description",
+        "oq_col": "Origination Quarter",
+        "time_prd_col": "Time Period",
+        "metric_col": "Metric Name",
+        "metric_val": "Metric Value",
+        "prev_arr_bucket": "Previous Arrears Bucket",
+        "curr_arr_bucket": "Current Arrears Bucket",
+        "decile": "Decile",
+        "bucket": "Bucket",
+        "pred_score_bucket": "Predicted Score Bucket",
+        "pred_score_dec": "Predicted Score Decile"
+      },
+      "Roll Rates MoM": {
+        "app_type": "Application Borrower Type",
+        "sf_tab_name": "./data/mom.xlsx",
+        "loan_pool_date": "Loan Pool Date",
+        "metric_col": "Metric Name",
+        "select_mom_cols": [
+          "Loan Pool Date",
+          "Name",
+          "Value",
+          "Data Description",
+          "Application Borrower Type"
+        ],
+        "roll_rate_bucket": "Name",
+        "rate_col": "Value",
+        "sample_col": "Data Description",
+        "decile_col": "Decile",
+        "pred_score_dec": "Predicted Score Decile",
+        "sb_bucket_col": "Bucket",
+        "pred_score_sb": "Predicted Score Bucket"
+      },
+      "Vintage Curves": {
+        "app_type": "Application Borrower Type",
+        "sf_tab_name": "./data/vintage.xlsx",
+        "oq_col": "Origination Quarter",
+        "mob": "Month On Book",
+        "dataset_name": "Dataset Name",
+        "view_by": "View By",
+        "sample_col": "Data Description",
+        "cum_90_in_18": "Arrears 90 In 18 Runtot Rate",
+        "decile": "Decile",
+        "pred_score_dec": "Predicted Score Decile",
+        "pred_score_bucket": "Predicted Score Bucket",
+        "bucket": "Bucket",
+        "hover_cols": [
+          "Origination Quarter",
+          "Arrears 30 In 3 Runtot Rate",
+          "Month On Book",
+          "Arrears 30 In 3 Runtot Count",
+          "Application Count"
+        ]
+    },
+    "System Stability": {
+      "app_type": "Application Borrower Type",
+      "sf_tab_name": "./data/stability.xlsx",
+      "qtr_col": "Application Quarter"
+    }
+  }
+}
