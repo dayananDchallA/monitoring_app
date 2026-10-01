@@ -43,10 +43,8 @@ class AppTemplate(ABC):
                 self.run()
       
         except Exception as e:
-            if self.debug:
-                st.write(e)
-            else:
-                st.toast("An error has occured, please try again.")
+            st.error(f"Error loading page '{self.title}': {e}")
+            st.exception(e)
 
 
     @abstractmethod

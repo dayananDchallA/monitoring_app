@@ -319,24 +319,51 @@ def format_filter_and_relabel_dataframe(df, formatting_dict):
     return filtered_df
 
 def show_selected_points(event, data_formatting_dict=None):
+    if not event:
+        return
 
-    st.write("Click a point to select and display, hold down the shift key and click to select multiple points whilst holding the shift key.")
-    
-    selected_points = event.selection.get("points", [])
-    if len(selected_points) > 0:
+    # Handle event whether it's an AttributeDictionary, dataclass, or standard dict
+    selection = None
+    if isinstance(event, dict):
+        selection = event.get("selection")
+    elif hasattr(event, "selection"):
+        selection = getattr(event, "selection")
+
+    if not selection:
+        return
+
+    if isinstance(selection, dict):
+        selected_points = selection.get("points", [])
+    elif hasattr(selection, "points"):
+        selected_points = getattr(selection, "points", [])
+    else:
+        selected_points = []
+
+    if selected_points and len(selected_points) > 0:
+        st.write("Click a point to select and display, hold down the shift key and click to select multiple points whilst holding the shift key.")
         clean_selected_points = flatten_dict_arrays(selected_points)
         dfp = pd.DataFrame.from_records(clean_selected_points)
         if data_formatting_dict:
             dfp = format_filter_and_relabel_dataframe(dfp, data_formatting_dict)
 
-        st.dataframe(dfp,hide_index=True)
+        st.dataframe(dfp, hide_index=True)
 
 
-def interactive_plotly(fig, key, container=None,use_container_width=True, on_select="rerun", config={'displayModeBar': False}, data_formatting_dict=None):
-    
-
-    event = st.plotly_chart(fig,container=container, config=config,theme="streamlit", use_container_width=use_container_width, on_select=on_select,key=key)
-    show_selected_points(event, data_formatting_dict)
+def interactive_plotly(fig, key, container=None, use_container_width=True, on_select="rerun", config={'displayModeBar': False}, data_formatting_dict=None):
+    try:
+        if container is not None:
+            with container:
+                event = st.plotly_chart(fig, config=config, theme="streamlit", use_container_width=use_container_width, on_select=on_select, key=key)
+        else:
+            event = st.plotly_chart(fig, config=config, theme="streamlit", use_container_width=use_container_width, on_select=on_select, key=key)
+        show_selected_points(event, data_formatting_dict)
+    except Exception as e:
+        # Fallback to standard chart rendering if interactive selection fails
+        if container is not None:
+            with container:
+                st.plotly_chart(fig, config=config, theme="streamlit", use_container_width=use_container_width)
+        else:
+            st.plotly_chart(fig, config=config, theme="streamlit", use_container_width=use_container_width)
 
 
 

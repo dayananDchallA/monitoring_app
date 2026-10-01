@@ -16,7 +16,6 @@ if __name__ == "__main__":
     app.add_page("Roll Rates MoM", RollRatesMonthPage)
     app.add_page("Roll Rates Matrix", RollRatesMatrixPage)
     app.add_page("Vintage Curves", VintageCurvesPage)
-    app.add_page("Vintage Curves", VintageCurvesPage)
     app.add_page("System Stability", SystemStabilityPage)
 
     app.run()
